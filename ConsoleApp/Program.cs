@@ -16,8 +16,8 @@ namespace console
                 double counts = Regex.Matches(input, $"{input[0]}").Count;
                 return counts;
             };
-            double AnonymousNest = CharAmount("uniusm douam");
-            Console.WriteLine(AnonymousNest + " identical symbols matching the starting symbol");
+            double AnonymousTest = CharAmount("uniusm douamu");
+            Console.WriteLine(AnonymousTest + " identical symbols matching the starting symbol");
 
             // lambda
             CharAmount = (input) =>
@@ -27,17 +27,16 @@ namespace console
                 return counts;
             };
 
-            double LambdaTest = CharAmount("uniusm douam");
+            double LambdaTest = CharAmount("niusm douamn");
             Console.WriteLine(LambdaTest + " identical symbols matching the starting symbol");
 
-            Stack stack = new Stack();
+           
+            Stack stack = new Stack(2);
             stack.StackEvent += StackClearingHandler;
 
             stack.Push(5);
             stack.Push(2);
-            stack.Pop();
-            stack.Clear();
-
+            stack.Push(8); // Stack Overflow
         }
 
         public delegate double CharAmountDelegate(string input);
@@ -48,10 +47,8 @@ namespace console
         }
         public static void StackClearingHandler(object sender, StackEventArgs eventArgs)
         {
-            Console.WriteLine($"Stack event:{eventArgs.EventMessage}");
+            Console.WriteLine($"Stack event: {eventArgs.EventMessage}");
         }
-
-
 
     }
 }
